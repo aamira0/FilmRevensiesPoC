@@ -33,7 +33,7 @@ Hieronder staan de prestaties van beide modellen op de dataset:
 
 ### Vereisten
 - **IDE**: IntelliJ IDEA.
-- **Weka-bibliotheek (JAR-bestand)**, toegevoegen aan het project. Dit download je via: [Weka Download](https://sourceforge.net/projects/weka/files/) en zet je in je library map.
+- **Weka-bibliotheek (JAR-bestand)**, toegevoegen aan het project. Dit download je via: [Weka Download](https://sourceforge.net/projects/weka/files/weka-3-8/3.8.0/) en zet je in je library map.
 - **Dataset**: Tekstbestand met filmrecensies (in code geïmplementeerd, geen externe CSV nodig)
 
 ### Installatiestappen en hoe het werkt
