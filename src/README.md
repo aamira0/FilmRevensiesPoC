@@ -33,17 +33,18 @@ Hieronder staan de prestaties van beide modellen op de dataset:
 
 ### Vereisten
 - **IDE**: IntelliJ IDEA.
-- **Weka-bibliotheek (JAR-bestand)**, toegevoegen aan het project. Dit download je via: [Weka Download](https://sourceforge.net/projects/weka/files/) en zet je in een map zoals '.idea' of 'lib/
+- **Weka-bibliotheek (JAR-bestand)**, toegevoegen aan het project. Dit download je via: [Weka Download](https://sourceforge.net/projects/weka/files/) en zet je in je library map.
 - **Dataset**: Tekstbestand met filmrecensies (in code geïmplementeerd, geen externe CSV nodig)
 
 ### Installatiestappen en hoe het werkt
-1. Download de Weka JAR en voeg deze toe aan je Java-project in een map zoals `lib/`.
-2. Zorg ervoor dat alle imports geinstallerd zijn.
-3. Zorg ervoor dat je dataset in de code correct is geïmplementeerd. Voorbeelden van dataset-initialisatie zijn in de code opgenomen (deze werkt en kan je gewoon gebruiken).
-4. Train de modellen en evalueer de prestaties in FilmRecensies class.
-5. Werken beide modellen? Welke presteert beter? Je kan nu de machine learning modellen gebruiken om filmrecensies te classificeren.
-6. Ga naar CustomDataset class, start de applicatie en voer een filmrecensie in om deze te classificeren.
-7. Bekijk de resultaten en beoordeel de nauwkeurigheid van de classificatie.
+1. Download de Weka JAR en voeg deze toe aan je Java-project in een library map zoals.
+2. Ga naar je project structure en voeg de Weka JAR toe aan je project in libraries.
+3. Zorg ervoor dat alle imports geinstallerd zijn.
+4. Zorg ervoor dat je dataset in de code correct is geïmplementeerd. Voorbeelden van dataset-initialisatie zijn in de code opgenomen (deze werkt en kan je gewoon gebruiken).
+5. Train de modellen en evalueer de prestaties in FilmRecensies class.
+6. Werken beide modellen? Welke presteert beter? Je kan nu de machine learning modellen gebruiken om filmrecensies te classificeren.
+7. Ga naar CustomDataset class, start de applicatie en voer een filmrecensie in om deze te classificeren.
+8. Bekijk de resultaten en beoordeel de nauwkeurigheid van de classificatie.
 
 ### Training van Modellen
 1. Bij het starten van de applicatie in de `CustomDataset` class, wordt een keuzemenu weergegeven.
