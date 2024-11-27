@@ -1,19 +1,19 @@
 package org.example.poc;
 
+import org.example.poc.ModelTraining.ModelFactory;
+import org.example.poc.ModelTraining.MachineLearningModel;
 import weka.core.DenseInstance;
 import weka.core.Instances;
 import weka.core.Attribute;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.StringToWordVector;
-import weka.core.SerializationHelper;
-import weka.core.Instance;
 import weka.classifiers.trees.RandomForest;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CustomDataset {
+public class StartApplication {
 
 
     private static weka.classifiers.Classifier classifier; // Algemeen type voor zowel NaiveBayes als RandomForest
@@ -210,7 +210,7 @@ public class CustomDataset {
             recensieCount++;
 
             // Vraag pas om van model te wisselen na 5 recensies
-            if (recensieCount >= 5) {
+            if (recensieCount >= 10) {
                 System.out.print("Wil je van model wisselen? (ja/nee): ");
                 String switchModel = scanner.nextLine();
                 if (switchModel.equalsIgnoreCase("ja")) {

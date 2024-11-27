@@ -1,4 +1,4 @@
-package org.example.poc;
+package org.example.poc.ModelTraining;
 
 import weka.core.Instances;
 

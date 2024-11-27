@@ -33,37 +33,27 @@ Hieronder staan de prestaties van beide modellen op de dataset:
 
 ### Vereisten
 - **IDE**: IntelliJ IDEA.
-- **Weka-bibliotheek (JAR-bestand)**, toegevoegen aan het project. Dit download je via: [Weka Download](https://sourceforge.net/projects/weka/files/weka-3-8/3.8.0/) en zet je in je library map.
-- **Dataset**: Tekstbestand met filmrecensies (in code geïmplementeerd, geen externe CSV nodig)
+- **Weka-bibliotheek (JAR-bestand)**, toegevoegen aan het project. Dit download je via: [Weka Download](https://sourceforge.net/projects/weka/files/) of heb je als zip-bestand ontvangen en zet je in een library map zoals `lib/`.
 
 ### Installatiestappen en hoe het werkt
-1. Download de Weka JAR en voeg deze toe aan je Java-project in een library map zoals.
-2. Ga naar je project structure en voeg de Weka JAR toe aan je project in libraries.
-3. Zorg ervoor dat alle imports geinstallerd zijn.
-4. Zorg ervoor dat je dataset in de code correct is geïmplementeerd. Voorbeelden van dataset-initialisatie zijn in de code opgenomen (deze werkt en kan je gewoon gebruiken).
-5. Train de modellen en evalueer de prestaties in FilmRecensies class.
-6. Werken beide modellen? Welke presteert beter? Je kan nu de machine learning modellen gebruiken om filmrecensies te classificeren.
-7. Ga naar CustomDataset class, start de applicatie en voer een filmrecensie in om deze te classificeren.
-8. Bekijk de resultaten en beoordeel de nauwkeurigheid van de classificatie.
+1. Download of gebruik de Weka JAR die is meegegeven en voeg deze toe aan je Java-project in een library map zoals `lib/`.
+2. Ga naar project structure en voeg de Weka JAR toe en voeg de weka.jar toe in je libraries die je in een map hebt gezet.
+3. Nu alles geïnstalleerd is kan je naar StartApplication gaan en de applicatie starten.
+4. Je krijgt in de console de keuze tussen NaiveBayes en RandomForest. Kies een model om te beginnen.
+5. Je kan nu film recensies in de console invoeren en de classificatie resultaten bekijken (positief of negatief).
+6. Je geeft daarbij feedback of het model de recensie goed of fout heeft geclassificeerd. Is het fout dan kan je aangeven of het een positieve of negatieve recensie is.
+7. Het model wordt opnieuw getraind met de feedback. Dit kan bij sommige recensies sneller zijn dan bij andere. Lange recensies werken op de huidige dataset beter en sneller.
+8. Je kan na 10 recensies van model wisselen. Dit wordt ook gevraagd in de console.
+9. Als je wilt stoppen met de applicatie kan je dit aangeven in de console met 'stop'. De sessie wordt dan afgesloten en alles dat het model geleerd heeft wordt niet opgeslagen.
+10. De applicatie stopt. Als je de applicatie opnieuw start, wordt er een nieuwe sessie gestart.
 
 ### Training van Modellen
-1. Bij het starten van de applicatie in de `CustomDataset` class, wordt een keuzemenu weergegeven.
-Selecteer de gewenste classifier:
-    - Voor **NaiveBayes**, kies `NaiveBayes`.
-    - Voor **RandomForest**, kies `RandomForest`.
-2. Je kan nu film recenties invoeren en de classificatie resultaten bekijken.
-3. Je geeft feedback over de classificatie.
-4. Het model wordt opnieuw getraind met de feedback. Dit kan bij sommige recensies sneller zijn dan bij andere. Lange recensies werken op de huidige dataset beter en sneller.
-5. Je kan na 10 recensies van model wisselen.
-6. Je kan de applicatie stoppen door `stop` in te voeren.
-7. Wanneer je het stopt eindigt de sessie en wordt de applicatie afgesloten. Hte leert op je feedback binnen een sessie. Bij het opnieuw starten van de applicatie wordt de sessie opnieuw gestart.
+- De modellen zijn getraind op basis van de filmrecensies in de dataset (in code geïmplementeerd van StartApplication).
+- Tijdens het gebruik van de applicatie worden de modellen getraind op basis van de feedback van de gebruiker. Dit werkt binnen een sessie.
 
 ### Evaluatie
-- Resultaten worden weergegeven in de console na het trainen van de modellen.
-- De prestaties van beide modellen worden vergeleken op basis van nauwkeurigheid, Kappa-statistiek en fouten.
-- Vergelijk de prestaties tussen de modellen om tot een aanbeveling te komen.
-
-- Bij het toevoegen van een nieuwe recensie wordt de classificatie weergegeven en na één of meerdere recensies wordt de machine learning verbeterd.
+- Resultaten van de recensies worden getoond in de console en kunnen gecorrigeerd worden door de gebruiker in de console van StartApplication. Dezelfde recensie kan weer ingevoerd worden om te zien of het model de recensie nu goed classificeert. Dit werkt alleen sneller bij lange recensies.
+- De prestaties van beide modellen worden vergeleken op basis van nauwkeurigheid etc. in de console van CheckModels.
 
 ---
 
@@ -71,3 +61,4 @@ Selecteer de gewenste classifier:
 1. **Hyperparameter Tuning**: Optimaliseer de RandomForest-parameters om de prestaties te verbeteren.
 2. **Meer Data**: Verhoog de omvang van de trainingsdataset om de nauwkeurigheid van beide modellen te verbeteren.
 3. **Alternatieve Modellen**: Experimenteer met andere classifiers zoals SVM of Logistic Regression.
+4. **Data opslaan**: Sla de feedback van de gebruiker op en gebruik deze om de modellen te verbeteren.

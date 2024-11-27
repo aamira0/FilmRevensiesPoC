@@ -1,20 +1,18 @@
-package org.example.poc;
+package org.example.poc.ModelTraining;
 
+import org.example.poc.StartApplication;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.classifiers.Evaluation;
 import weka.core.Instances; // Voor het werken met datasets
-import weka.core.converters.ConverterUtils.DataSource;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 import weka.classifiers.trees.RandomForest;
 
-import java.util.Random; // Voor het genereren van willekeurige getallen, bijvoorbeeld voor cross-validatie
-
-public class FilmRecensies {
+public class CheckModels {
     public static void main(String[] args) throws Exception {
         // Haalt de dataset op uit CustomDataset. Deze methode is eerder gedefinieerd
         // en geeft een Instances-object terug dat de recensies en hun labels (positief/negatief) bevat.
-        Instances dataSet = CustomDataset.createDataset();
+        Instances dataSet = StartApplication.createDataset();
 
         // Maak een nieuw StringToWordVector filter aan
         // Dit filter zal tekst omzetten naar numerieke waarden (woordvectoren) voor de machine learning.

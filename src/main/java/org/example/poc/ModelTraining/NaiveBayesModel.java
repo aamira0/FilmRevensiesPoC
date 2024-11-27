@@ -1,5 +1,6 @@
-package org.example.poc;
+package org.example.poc.ModelTraining;
 
+import org.example.poc.ModelTraining.MachineLearningModel;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.core.DenseInstance;
 import weka.core.Instance;

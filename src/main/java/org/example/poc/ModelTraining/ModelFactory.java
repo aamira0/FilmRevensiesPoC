@@ -1,4 +1,8 @@
-package org.example.poc;
+package org.example.poc.ModelTraining;
+
+import org.example.poc.ModelTraining.MachineLearningModel;
+import org.example.poc.ModelTraining.NaiveBayesModel;
+import org.example.poc.ModelTraining.RandomForestModel;
 
 public class ModelFactory {
     public static MachineLearningModel createModel(String modelType) {
