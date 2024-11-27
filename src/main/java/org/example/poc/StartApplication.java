@@ -32,7 +32,7 @@ public class StartApplication {
     }
 
     // Methode om een nieuwe dataset te creëren met voorbeelden van recensies
-    public static Instances createDataset() throws Exception {
+    public static Instances createDataset() {
         ArrayList<Attribute> attributes = new ArrayList<>(); // Lijst met attributen
         attributes.add(new Attribute("tekst", (ArrayList<String>) null)); // Tekstattribuut
         ArrayList<String> classValues = new ArrayList<>(); // Lijst met mogelijke klassen
@@ -166,8 +166,20 @@ public class StartApplication {
 
         // Kies vooraf het model via de Factory
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Kies het model (NaiveBayes/RandomForest): ");
-        String modelType = scanner.nextLine();  // Keuze voor het model
+        String modelType;
+
+        // Blijf vragen om invoer totdat een geldige modelkeuze wordt ingevoerd
+        while (true) {
+            System.out.print("Kies het model (NaiveBayes/RandomForest): ");
+            modelType = scanner.nextLine();  // Keuze voor het model
+
+            // Controleer of de keuze geldig is
+            if (modelType.equalsIgnoreCase("NaiveBayes") || modelType.equalsIgnoreCase("RandomForest")) {
+                break; // Geldige keuze, breek de lus
+            } else {
+                System.out.println("Ongeldige invoer. Kies een geldig model: NaiveBayes of RandomForest.");
+            }
+        }
 
         // Gebruik de factory om het juiste model te maken
         MachineLearningModel model = ModelFactory.createModel(modelType);
@@ -197,9 +209,23 @@ public class StartApplication {
             System.out.print("Was de voorspelling correct? (ja/nee): ");
             String feedback = scanner.nextLine();
 
+            // Blijf vragen totdat de gebruiker 'ja' of 'nee' invoert
+            while (!feedback.equalsIgnoreCase("ja") && !feedback.equalsIgnoreCase("nee")) {
+                System.out.println("Ongeldige invoer. Typ 'ja' of 'nee'.");
+                feedback = scanner.nextLine();
+            }
+
             if (feedback.equalsIgnoreCase("nee")) {
+                // Vraag om het juiste sentiment (positief of negatief)
                 System.out.print("Wat was het correcte sentiment? (positief/negatief): ");
                 String correctSentiment = scanner.nextLine();
+
+                // Blijf vragen totdat de gebruiker 'positief' of 'negatief' invoert
+                while (!correctSentiment.equalsIgnoreCase("positief") && !correctSentiment.equalsIgnoreCase("negatief")) {
+                    System.out.println("Ongeldige invoer. Typ 'positief' of 'negatief'.");
+                    correctSentiment = scanner.nextLine();
+                }
+
                 updateDataset(nieuweRecensie, correctSentiment); // Update dataset met de juiste klasse
                 System.out.println("Het model is bijgewerkt met de nieuwe recensie en opnieuw getraind.");
             } else {
@@ -213,14 +239,36 @@ public class StartApplication {
             if (recensieCount >= 10) {
                 System.out.print("Wil je van model wisselen? (ja/nee): ");
                 String switchModel = scanner.nextLine();
+
+                // Blijf vragen totdat de gebruiker 'ja' of 'nee' invoert
+                while (!switchModel.equalsIgnoreCase("ja") && !switchModel.equalsIgnoreCase("nee")) {
+                    System.out.println("Ongeldige invoer. Typ 'ja' of 'nee'.");
+                    switchModel = scanner.nextLine();
+                }
+
                 if (switchModel.equalsIgnoreCase("ja")) {
-                    System.out.print("Kies het nieuwe model (NaiveBayes/RandomForest): ");
-                    String newModelType = scanner.nextLine();
+                    String newModelType;
+
+                    // Blijf vragen om een nieuwe modelkeuze totdat een geldige keuze wordt ingevoerd
+                    while (true) {
+                        System.out.print("Kies het nieuwe model (NaiveBayes/RandomForest): ");
+                        newModelType = scanner.nextLine();
+
+                        // Controleer of de keuze geldig is
+                        if (newModelType.equalsIgnoreCase("NaiveBayes") || newModelType.equalsIgnoreCase("RandomForest")) {
+                            break; // Geldige keuze, breek de lus
+                        } else {
+                            System.out.println("Ongeldige invoer. Kies een geldig model: NaiveBayes of RandomForest.");
+                        }
+                    }
+
+                    // Wijzig het modeltype en hertrain het model
                     if (newModelType.equalsIgnoreCase("RandomForest")) {
                         classifier = new RandomForest();
                     } else {
                         classifier = new NaiveBayes();
                     }
+
                     // Hertrain het geselecteerde model met de dataset
                     trainModel(dataSet);
                     System.out.println("Model is gewisseld naar: " + newModelType);
