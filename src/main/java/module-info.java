@@ -1,7 +1,7 @@
 module org.example.poc {
     requires javafx.controls;
     requires javafx.fxml;
-    requires weka;
+    requires weka.stable;
 
 
     opens org.example.poc to javafx.fxml;

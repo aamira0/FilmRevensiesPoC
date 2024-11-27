@@ -15,9 +15,8 @@ import java.util.Scanner;
 
 public class StartApplication {
 
-
-    private static weka.classifiers.Classifier classifier; // Algemeen type voor zowel NaiveBayes als RandomForest
-    private static StringToWordVector filter; // Filter voor het omzetten van tekst naar woordenvectoren
+    private static weka.classifiers.Classifier classifier; // Algemeen type voor zowel NaiveBayes, RandomForest en SVM
+    public static StringToWordVector filter; // Filter voor het omzetten van tekst naar woordenvectoren
     private static Instances dataSet; // Dataset voor het opslaan van recensies en labels
 
     // Helperfunctie om een recensie toe te voegen aan de dataset
@@ -126,9 +125,8 @@ public class StartApplication {
         return Filter.useFilter(dataSet, filter); // Toepassen van het filter op de dataset
     }
 
-    // Train het NaiveBayes model met de gegeven dataset
+    // Train het model (NaiveBayes, RandomForest of SVM)
     public static void trainModel(Instances dataSet) throws Exception {
-        classifier = new NaiveBayes(); // Maak een nieuwe NaiveBayes classifier aan
         Instances filteredData = applyStringToWordVectorFilter(dataSet); // Filter de dataset
         classifier.buildClassifier(filteredData); // Train de classifier
     }
@@ -162,6 +160,7 @@ public class StartApplication {
     public static void main(String[] args) throws Exception {
         // Dataset aanmaken en het model trainen
         dataSet = createDataset(); // Dataset aanmaken
+        classifier = new NaiveBayes(); // Default model (kan later worden veranderd)
         trainModel(dataSet); // Model trainen met initiële dataset
 
         // Kies vooraf het model via de Factory
@@ -170,14 +169,14 @@ public class StartApplication {
 
         // Blijf vragen om invoer totdat een geldige modelkeuze wordt ingevoerd
         while (true) {
-            System.out.print("Kies het model (NaiveBayes/RandomForest): ");
+            System.out.print("Kies het model (NaiveBayes/RandomForest/SVM): ");
             modelType = scanner.nextLine();  // Keuze voor het model
 
             // Controleer of de keuze geldig is
-            if (modelType.equalsIgnoreCase("NaiveBayes") || modelType.equalsIgnoreCase("RandomForest")) {
+            if (modelType.equalsIgnoreCase("NaiveBayes") || modelType.equalsIgnoreCase("RandomForest") || modelType.equalsIgnoreCase("SVM")) {
                 break; // Geldige keuze, breek de lus
             } else {
-                System.out.println("Ongeldige invoer. Kies een geldig model: NaiveBayes of RandomForest.");
+                System.out.println("Ongeldige invoer. Kies een geldig model: NaiveBayes, RandomForest of SVM.");
             }
         }
 

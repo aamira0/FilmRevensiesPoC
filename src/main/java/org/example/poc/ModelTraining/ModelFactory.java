@@ -10,6 +10,8 @@ public class ModelFactory {
             return new NaiveBayesModel();
         } else if (modelType.equalsIgnoreCase("RandomForest")) {
             return new RandomForestModel(); // Voeg de RandomForest class toe
+        } else if (modelType.equalsIgnoreCase("SVM")) {
+            return new SVMModel(); // Voeg de SVM class toe
         }
         throw new IllegalArgumentException("Onbekend model type: " + modelType);
     }
