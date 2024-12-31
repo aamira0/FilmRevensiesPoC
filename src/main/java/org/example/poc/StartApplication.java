@@ -2,6 +2,7 @@ package org.example.poc;
 
 import org.example.poc.ModelTraining.ModelFactory;
 import org.example.poc.ModelTraining.MachineLearningModel;
+import weka.classifiers.functions.SMO;
 import weka.core.DenseInstance;
 import weka.core.Instances;
 import weka.core.Attribute;
@@ -250,20 +251,22 @@ public class StartApplication {
 
                     // Blijf vragen om een nieuwe modelkeuze totdat een geldige keuze wordt ingevoerd
                     while (true) {
-                        System.out.print("Kies het nieuwe model (NaiveBayes/RandomForest): ");
+                        System.out.print("Kies het nieuwe model (NaiveBayes/RandomForest/SVM): ");
                         newModelType = scanner.nextLine();
 
                         // Controleer of de keuze geldig is
-                        if (newModelType.equalsIgnoreCase("NaiveBayes") || newModelType.equalsIgnoreCase("RandomForest")) {
+                        if (newModelType.equalsIgnoreCase("NaiveBayes") || newModelType.equalsIgnoreCase("RandomForest") || newModelType.equalsIgnoreCase("SVM")) {
                             break; // Geldige keuze, breek de lus
                         } else {
-                            System.out.println("Ongeldige invoer. Kies een geldig model: NaiveBayes of RandomForest.");
+                            System.out.println("Ongeldige invoer. Kies een geldig model: NaiveBayes, RandomForest of SVM.");
                         }
                     }
 
                     // Wijzig het modeltype en hertrain het model
                     if (newModelType.equalsIgnoreCase("RandomForest")) {
                         classifier = new RandomForest();
+                    } else if (newModelType.equalsIgnoreCase("SVM")) {
+                        classifier = new SMO();
                     } else {
                         classifier = new NaiveBayes();
                     }

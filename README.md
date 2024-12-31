@@ -3,7 +3,20 @@
 ## Overzicht
 Deze Proof of Concept (PoC) demonstreert een Machine Learning-toepassing voor het classificeren van filmrecensies op basis van hun sentiment (bijvoorbeeld positief of negatief). Het project gebruikt de Weka-bibliotheek in een programmeeromgeving (Java) om classificatie te implementeren en te evalueren.
 
+**!Het model heeft een kleine dataset en kan daardoor minder nauwkeurig zijn!**
+
 ---
+
+## Inhoudsopgave
+
+1. [Functionaliteiten](#functionaliteiten)
+2. [Resultaten](#resultaten)
+3. [Installatie & Vereisten](#installatie--vereisten)
+    - [Vereisten](#vereisten)
+    - [Installatiestappen](#installatiestappen)
+    - [Uitvoeren van de Applicatie](#uitvoeren-van-de-applicatie)
+    - [Evaluatie](#evaluatie)
+4. [Toekomstige Verbeteringen](#toekomstige-verbeteringen)
 
 ## Functionaliteiten
 - Classificatie van filmrecensies via drie modellen:
@@ -39,10 +52,12 @@ Hieronder staan de prestaties van de modellen op de dataset:
 
 ### Installatiestappen
 1. Open de zip van het project en pak deze uit.
-2. Open het project in IntelliJ IDEA.
+2. Open het project in IntelliJ IDEA. Zorg ervoor dat de JDK 21 is geïnstalleerd.
+
+   (Heb je een andere versie van de JDK, dan kan je deze veranderen in de projectstructuur bij SDK's.)
 3. Als je naar pom.xml gaat, verschijnt er een pop-up om de dependencies te importeren met Maven. Klik hierop en zodra de dependencies zijn geïmporteerd, is het project klaar voor gebruik. 
 
-Als IntelliJ niet automatisch vraagt om dependencies te importeren, kun je altijd handmatig de volgende stappen volgen:
+**Als IntelliJ niet automatisch vraagt om dependencies te importeren, kun je altijd handmatig de volgende stappen volgen:**
 - Ga naar pom.xml ->
 - Maven Tool Window openen ->
 - Ga naar de rechterkant van je scherm en zoek het Maven Tool Window (een klein icon met het Maven-logo). ->
