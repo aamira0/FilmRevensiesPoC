@@ -187,14 +187,14 @@ public class StartApplication {
         model.train(dataSet);
 
         // Opmerking over het verbeteren van het model na meerdere recensies
-        System.out.println("Opmerking: Het model werkt beter met langere reviews. Met korte duurt het even voordat die het verbeterd.");
+        System.out.println("Opmerking: Het model werkt beter met langere recensies (zie ReadMe). Met korte duurt het even voordat die het verbeterd.");
 
         // Teller voor het aantal recensies
         int recensieCount = 0;
 
         while (true) {
             // Vraag de gebruiker om een recensie in te voeren
-            System.out.print("Voer een nieuwe recensie in (of typ 'stop' om te eindigen): ");
+            System.out.print("Voer een nieuwe filmrecensie in (of typ 'stop' om te eindigen): ");
             String nieuweRecensie = scanner.nextLine();
             if (nieuweRecensie.equalsIgnoreCase("stop")) {
                 break; // Stop de loop als de gebruiker 'stop' invoert
@@ -226,7 +226,7 @@ public class StartApplication {
                 }
 
                 updateDataset(nieuweRecensie, correctSentiment); // Update dataset met de juiste klasse
-                System.out.println("Het model is bijgewerkt met de nieuwe recensie en opnieuw getraind.");
+                System.out.println("Het model is bijgewerkt met de nieuwe filmrecensie en opnieuw getraind.");
             } else {
                 System.out.println("Bedankt voor de bevestiging!");
             }

@@ -6,26 +6,28 @@ Deze Proof of Concept (PoC) demonstreert een Machine Learning-toepassing voor he
 ---
 
 ## Functionaliteiten
-- Classificatie van filmrecensies via twee modellen:
+- Classificatie van filmrecensies via drie modellen:
     - **NaiveBayes**: Simpel, snel, en accuraat voor tekstuele data.
     - **RandomForest**: Een krachtiger model voor complexe datasets.
+    - **SVM**: Goed voor het classificeren van tekstuele data.
 - Vergelijking van modelprestaties met metriek zoals nauwkeurigheid, Kappa-statistiek en fouten.
 
 ---
 
 ## Resultaten
-Hieronder staan de prestaties van beide modellen op de dataset:
+Hieronder staan de prestaties van de modellen op de dataset:
 
-| **Metriek**               | **NaiveBayes**     | **RandomForest**    |
-|---------------------------|--------------------|---------------------|
-| Correct geclassificeerde voorbeelden | 92.73%            | 78.18%             |
-| Kappa-statistiek          | 0.8533            | 0.5417             |
-| Gemiddelde absolute fout  | 0.0684            | 0.2676             |
-| Root Mean Squared Error   | 0.2532            | 0.3525             |
+| **Metriek**               | **NaiveBayes**     | **RandomForest**    | **SVM**             |
+|---------------------------|--------------------|---------------------|---------------------|
+| Correct geclassificeerde voorbeelden | 92.73%            | 78.18%             | 85.45%             |
+| Kappa-statistiek          | 0.8533            | 0.5417             | 0.7543             |
+| Gemiddelde absolute fout  | 0.0684            | 0.2676             | 0.1456             |
+| Root Mean Squared Error   | 0.2532            | 0.3525             | 0.3012             |
 
 ### Conclusie
 - **NaiveBayes presteert beter** in termen van nauwkeurigheid en fouten, en wordt daarom aanbevolen voor dit project.
 - **RandomForest** biedt ruimte voor verbetering, bijvoorbeeld door hyperparameter tuning en datasetvergroting.
+- **SVM** presteert goed en kan een alternatief zijn afhankelijk van de dataset en vereisten.
 
 ---
 
@@ -33,41 +35,50 @@ Hieronder staan de prestaties van beide modellen op de dataset:
 
 ### Vereisten
 - **IDE**: IntelliJ IDEA.
-- **Weka-bibliotheek (JAR-bestand)**, toegevoegen aan het project. Dit download je via: [Weka Download](https://sourceforge.net/projects/weka/files/) en zet je in je library map.
-- **Dataset**: Tekstbestand met filmrecensies (in code geïmplementeerd, geen externe CSV nodig)
+- **Java**: JDK 21. 
 
-### Installatiestappen en hoe het werkt
-1. Download de Weka JAR en voeg deze toe aan je Java-project in een library map zoals.
-2. Ga naar je project structure en voeg de Weka JAR toe aan je project in libraries.
-3. Zorg ervoor dat alle imports geinstallerd zijn.
-4. Zorg ervoor dat je dataset in de code correct is geïmplementeerd. Voorbeelden van dataset-initialisatie zijn in de code opgenomen (deze werkt en kan je gewoon gebruiken).
-5. Train de modellen en evalueer de prestaties in FilmRecensies class.
-6. Werken beide modellen? Welke presteert beter? Je kan nu de machine learning modellen gebruiken om filmrecensies te classificeren.
-7. Ga naar CustomDataset class, start de applicatie en voer een filmrecensie in om deze te classificeren.
-8. Bekijk de resultaten en beoordeel de nauwkeurigheid van de classificatie.
+### Installatiestappen
+1. Open de zip van het project en pak deze uit.
+2. Open het project in IntelliJ IDEA.
+3. Als je naar pom.xml gaat, verschijnt er een pop-up om de dependencies te importeren met Maven. Klik hierop en zodra de dependencies zijn geïmporteerd, is het project klaar voor gebruik. 
 
-### Training van Modellen
-1. Bij het starten van de applicatie in de `CustomDataset` class, wordt een keuzemenu weergegeven.
-Selecteer de gewenste classifier:
-    - Voor **NaiveBayes**, kies `NaiveBayes`.
-    - Voor **RandomForest**, kies `RandomForest`.
-2. Je kan nu film recenties invoeren en de classificatie resultaten bekijken.
-3. Je geeft feedback over de classificatie.
-4. Het model wordt opnieuw getraind met de feedback. Dit kan bij sommige recensies sneller zijn dan bij andere. Lange recensies werken op de huidige dataset beter en sneller.
-5. Je kan na 10 recensies van model wisselen.
+Als IntelliJ niet automatisch vraagt om dependencies te importeren, kun je altijd handmatig de volgende stappen volgen:
+- Ga naar pom.xml ->
+- Maven Tool Window openen ->
+- Ga naar de rechterkant van je scherm en zoek het Maven Tool Window (een klein icon met het Maven-logo). ->
+- Herlaad alle Maven-projecten. ->
+- Klik op de knop "Reload All Maven Projects" (een kleine cirkelpijl helemaal links). ->
+- IntelliJ zal nu de dependencies downloaden en je project configureren.
+
+4. Ga naar de `StartApplication` class en start de applicatie. Zodra dit is gelukt kan je naar het uitvoeren van de applicatie gaan.
+
+### Uitvoeren van de Applicatie
+1. Start de applicatie door de `StartApplication` class uit te voeren.
+2. De console vraagt om een modelkeuze, voer deze in.
+    - Voor **NaiveBayes**, voer `NaiveBayes` in.
+    - Voor **RandomForest**, voer `RandomForest` in.
+    - Voor **SVM**, voer `SVM` in.
+3. Nu kan je filmrecensies invoeren en de classificatieresultaten bekijken. 
+
+Het model werkt beter met langere recensies zoals, "Een meesterwerk van begin tot eind! De mix van drama en humor was perfect."
+
+Korte recensies zoals, "Slecht" of "Dit was zeer goed." kunnen minder nauwkeurig zijn. Als je ze toch wilt proberen, kan je dit doen, maar dan duurt het meerdere recensies voordat het model verbetert.
+
+4. Je voert in of de classificatie correct is (ja/nee). Zo niet, corrigeer je de classificatie (positief/negatief).
+5. Het model wordt opnieuw getraind met de feedback. Je kan altijd weer een recensie opnieuw invoeren om te zien of die het nu wel goed labeled. Na 10 recensies wordt er gevraagd om van model te wisselen. Je kan zelf kiezen of je dit doet of niet (ja/nee). Zo ja, dan kan je weer een model kiezen.
 6. Je kan de applicatie stoppen door `stop` in te voeren.
-7. Wanneer je het stopt eindigt de sessie en wordt de applicatie afgesloten. Hte leert op je feedback binnen een sessie. Bij het opnieuw starten van de applicatie wordt de sessie opnieuw gestart.
+7. Als je de applicatie stopt, eindigt de sessie. De nieuwe data wordt niet opgeslagen. Als je de applicatie opnieuw start, begint de sessie opnieuw en gebruikt het de standaarddata.
 
 ### Evaluatie
-- Resultaten worden weergegeven in de console na het trainen van de modellen.
-- De prestaties van beide modellen worden vergeleken op basis van nauwkeurigheid, Kappa-statistiek en fouten.
-- Vergelijk de prestaties tussen de modellen om tot een aanbeveling te komen.
-
-- Bij het toevoegen van een nieuwe recensie wordt de classificatie weergegeven en na één of meerdere recensies wordt de machine learning verbeterd.
+- Resultaten worden weergegeven in de console na het invoeren van een recensie.
+- De gebruiker kan de classificatie bevestigen of corrigeren.
+- Na het corrigeren van de classificatie wordt het model opnieuw getraind.
+- Bij het toevoegen van een nieuwe recensie wordt de classificatie weergegeven en na één of meerdere recensies wordt de machine learning verbeterd binnen een sessie.
 
 ---
 
 ## Toekomstige Verbeteringen
-1. **Hyperparameter Tuning**: Optimaliseer de RandomForest-parameters om de prestaties te verbeteren.
-2. **Meer Data**: Verhoog de omvang van de trainingsdataset om de nauwkeurigheid van beide modellen te verbeteren.
-3. **Alternatieve Modellen**: Experimenteer met andere classifiers zoals SVM of Logistic Regression.
+1. **Hyperparameter Tuning**: Optimaliseer de RandomForest- en SVM-modellen door hyperparameters te tunen.
+2. **Meer Data**: Verhoog de omvang van de trainingsdataset om de nauwkeurigheid van de modellen te verbeteren.
+3. **Data opslaan**: Sla de nieuwe data op om de modellen te verbeteren en de prestaties te evalueren ipv. alleen binnen een sessie.
+3. **Alternatieve Modellen**: Experimenteer met andere classifiers zoals Logistic Regression.
